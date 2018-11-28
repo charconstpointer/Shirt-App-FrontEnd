@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <!-- <script src="../scripts/jq.js"></script> -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <br />
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-default">Filter orders</span>
+      </div>
+      <input type="text" ng-model="filterOrders" class="form-control" aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-default" />
+    </div>
+
+    <ul class="list-group ">
+      <li ng-class="{'list-group-item list-group-item-light':!clicked, 'list-group-item ' :clicked}" ng-init="clicked = false"
+        ng-repeat="order in orders | filter:filterOrders | orderBy : order.name" class="list-group-item " ng-click="clicked = !clicked">
+        <div class="col text-center ">
+          <h4>{{ order.name }}</h4>
+          <span class="badge badge-dark">{{ order.date }}</span>
+          <div class="col text-center" ng-show="clicked" ng-repeat="shirt in order.shirts">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item disabled">
+                <i style="font-size: 1.5em; color:{{shirt.color}} " class="ionicons ion-tshirt-outline"></i>
+                <p class="mb-0">Color: {{ shirt.color }}</p>
+                <p class="mb-0">Size: {{ shirt.size }}</p>
+              </li>
+              <li class="list-group-item disabled"></li>
+            </ul>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</body>
+
+</html>

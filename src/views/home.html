@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="order">
+      <form ng-submit="submitOrder()" name="orderForm">
+        <br />
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">Your Name </span>
+          </div>
+          <input ng-change="validateName()" name="nameInput" ng-model="client.name" placeholder="Starts with capital letter, no numbers or special characters"
+            required type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" ng-style="isNameValid &&  {'background-color':'light-green'} || {'background-color': ''}" />
+        </div>
+        <p ng-show="!isNameValid  && client.name !== undefined ">Name should start with a capital letter, can't contain
+          any numbers or special
+          characters</p>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon3">Your Age </span>
+          </div>
+          <input ng-change="validateAge()" ng-model="client.age" placeholder="Numeric value between 18-100" required
+            type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" />
+        </div>
+
+        <p ng-show="!isAgeValid && client.age !== undefined">Age must be a number between 18 and 100</p>
+
+
+        <div class="dropdown">
+
+          <button class="btn btn-secondary dropdown-toggle" type="button" style="width: 100%;" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Available shirt colors
+          </button>
+
+          <div class="dropdown-menu" style="width: 100%;" aria-labelledby="dropdownMenuButton">
+            <a ng-repeat="color in variations" ng-click="fetchSizes(color)" class="dropdown-item">
+              {{ color }}
+            </a>
+          </div>
+        </div>
+
+        <div ng-show="availableSizes.length > 0" class="sizes">
+          <br>
+          <div class="d-flex btn-group btn-group-toggle" data-toggle="buttons">
+            <label ng-repeat="size in availableSizes" ng-click="selectedSize(size)" class="btn btn-secondary w-100">
+              <input ng-model="selectedShirtSize" class="btn input-block-level w-90" type="radio" name="options" id="option1"
+                value="$index" autocomplete="off" />
+              {{size}}
+            </label>
+          </div>
+        </div>
+
+      </form>
+      <br>
+      <div ng-show="availableSizes.length > 0 && isNameValid && isAgeValid" class="btn-group d-flex" role="group"
+        aria-label="...">
+        <button type="button" ng-click="addToBasket()" class="btn btn-secondary btn-default w-100">Add to your basket</button>
+        <button type="button" ng-click="placeAnOrder()" class="btn btn-secondary btn-default w-100">Place an order</button>
+      </div>
+    </div>
+    <div class="basket">
+      <div class="col text-center" ng-show="basket.length > 0" ng-repeat="shirt in basket">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item disabled">
+            <i style="font-size: 1.5em; color:{{shirt.color}} " class="ionicons ion-tshirt-outline"></i>
+            <button type="button" class="close" ng-click="removeElement(shirt)" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <p class="mb-0">Color: {{ shirt.color }}</p>
+            <p class="mb-0">Size: {{ shirt.size }}</p>
+          </li>
+          <li class="list-group-item disabled"></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css"></script>
+</body>
+
+</html>
