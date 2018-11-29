@@ -42,31 +42,22 @@ export default class ShoppingController {
   }
 
   placeAnOrder($scope, $http) {
-    let order = {
-      name: $scope.client.name,
-      age: $scope.client.age,
-      date: "2019-01-01",
-      shirts: []
-    }
-    for (let shirt of $scope.basket) {
-      order.shirts.push(angular.copy(shirt))
-    }
-
     $http({
       method: 'POST',
       url: 'http://localhost:9000/order/',
       headers: { 'Content-Type': 'application/json' },
       data: {
-        "$$hashKey": "object:92",
         "age": parseInt($scope.client.age),
-        "date": "TUDEJ",
+        "date": "optional",
         "name": $scope.client.name,
         "shirts": $scope.basket
       }
     }).then(res => {
-      $scope.client.age = null
-      $scope.client.name = null
+      $scope.client.age = undefined
+      $scope.client.name = undefined
       $scope.basket = []
+      $scope.isNameValid = false;
+      $scope.isAgeValid = false;
     })
   }
 
@@ -91,7 +82,7 @@ export default class ShoppingController {
   }
   validateName($scope) {
     // One word, starts with a capital letter, no numbers and special chars
-    let expression = new RegExp('([A-Z]{1}[a-zA-Z]+$)')
+    let expression = new RegExp('(^[A-Z]{1}[a-zA-Z]+$)')
     $scope.isNameValid = expression.test($scope.client.name)
   }
 }

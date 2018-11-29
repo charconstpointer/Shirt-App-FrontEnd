@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Document</title>
-  <!-- <script src="../scripts/jq.js"></script> -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 </head>
 
@@ -26,6 +25,7 @@
         ng-repeat="order in orders | filter:filterOrders | orderBy : order.name" class="list-group-item " ng-click="clicked = !clicked">
         <div class="col text-center ">
           <h4>{{ order.name }}</h4>
+          <h5> {{order.age}}</h5>
           <span class="badge badge-dark">{{ order.date }}</span>
           <div class="col text-center" ng-show="clicked" ng-repeat="shirt in order.shirts">
             <ul class="list-group list-group-flush">

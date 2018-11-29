@@ -62,36 +62,29 @@
 
       </form>
       <br>
-      <div ng-show="availableSizes.length > 0 && isNameValid && isAgeValid" class="btn-group d-flex" role="group"
+      <div ng-show="availableSizes.length > 0 && isNameValid && isAgeValid " class="btn-group d-flex" role="group"
         aria-label="...">
         <button type="button" ng-click="addToBasket()" class="btn btn-secondary btn-default w-100">Add to your basket</button>
-        <button type="button" ng-click="placeAnOrder()" class="btn btn-secondary btn-default w-100">Place an order</button>
+        <button type="button" ng-click="placeAnOrder()" class="btn btn-secondary btn-default w-100">Place
+          an order</button>
       </div>
     </div>
     <div class="basket">
-      <div class="col text-center" ng-show="basket.length > 0" ng-repeat="shirt in basket">
+      <div class="col text-center" ng-show="basket.length > 0" ng-repeat="shirt in basket track by $index ">
         <ul class="list-group list-group-flush">
           <li class="list-group-item disabled">
-            <i style="font-size: 1.5em; color:{{shirt.color}} " class="ionicons ion-tshirt-outline"></i>
             <button type="button" class="close" ng-click="removeElement(shirt)" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
             <p class="mb-0">Color: {{ shirt.color }}</p>
             <p class="mb-0">Size: {{ shirt.size }}</p>
+            <i style="font-size: 1.5em; color:{{shirt.color}} " class="ionicons ion-tshirt-outline"></i>
           </li>
           <li class="list-group-item disabled"></li>
         </ul>
       </div>
     </div>
   </div>
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css"></script>
 </body>
 
 </html>

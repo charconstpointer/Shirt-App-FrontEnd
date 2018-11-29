@@ -16,7 +16,7 @@ let app = () => {
 const MODULE_NAME = "app";
 
 class AppCtrl {
-  constructor() {}
+  constructor() { }
 }
 
 angular
@@ -36,7 +36,11 @@ angular
         .when("/orders", {
           template: require("../views/orders.html"),
           controller: "ordersController"
-        });
+        }).otherwise({
+          redirectTo: '/home'
+        })
+
+
     }
   ])
   .controller("AppCtrl", AppCtrl)
