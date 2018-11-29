@@ -1,4 +1,4 @@
 # Shopping View
-![](https://i.imgur.com/YHBc2O8.png) 
+![](https://i.imgur.com/T7hsuZR.png) 
 # Orders View
-![](https://i.imgur.com/KwH4YEy.png)
+![](https://i.imgur.com/bPJB3OD.png)
